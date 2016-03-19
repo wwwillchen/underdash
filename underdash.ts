@@ -1,9 +1,12 @@
-interface Iteraee {
-  (element: any, index: number, collection: any[] | any): any
+type Collection<T> = T[] | T;
+type Index = number | string;
+
+interface Iteratee<T> {
+  (element: T, index: Index, collection: Collection<T>): T | void
 }
 
-interface Reducer {
-  (accumulator:any, element: any, index: number, collection: any[] | any): any
+interface Reducer<T> {
+  (accumulator:T, element: T, index: Index, collection: Collection<T>): any
 }
 
 class Underdash {
@@ -16,29 +19,30 @@ class Underdash {
    * _.each
    * iterate through a collection
    */
-  each(collection: any[] | Object, fn: Iteraee): any {
+  each<T>(collection: Collection<T>, fn: Iteratee<T>): Collection<T> {
     if (Array.isArray(collection)) {
       return _.arrayForEach(collection, fn);
-    } else if (_.isObject(collection)) {
+    } 
+    if (_.isObject(collection)) {
       return _.objectForEach(collection, fn);
     }
   }
   
-  private arrayForEach(array: any[], fn) {
+  private arrayForEach<T>(array: T[], fn: Iteratee<T>): T[] {
     for (let i = 0; i < array.length; i++) {
       fn(array[i], i, array);
     }
     return array;
   }
   
-  private objectForEach(object: Object, fn) {
+  private objectForEach<T>(object: T, fn: Iteratee<T>): T {
     for (let key in object) {
       fn(object[key], key, object);
     }
     return object
   }
   
-  map(collection: any[] | Object, fn: Iteraee): any {
+  map<T, U extends Collection<T>>(collection: U, fn: Iteratee<U>): any[] {
     const result = [];
     _.each(collection, function(value, key, collection){
       if (!_.isNil(fn(value, key, collection))) {
@@ -48,26 +52,28 @@ class Underdash {
     return result;
   }
   
-  reduce(collection: any[], fn: Reducer, acc?: any): any {
-    if (!acc) {
-      acc = collection[0];
-      collection = collection.slice(1)
-    }
+  reduce<T>(collection: Collection<T>, fn: Reducer<T>, acc?: any): any {
+    let initialAcc = Boolean(arguments.length < 3);
     _.each(collection, function(value, key, collection){
-      acc = fn(acc, value, key, collection)
+      if (initialAcc) {
+        initialAcc = false;
+        acc = value;
+      } else {
+        acc = fn(acc, value, key, collection);  
+      }
     })
     return acc;
   }
   
-  filter(collection: any[] | Object, fn: Iteraee): any {
-    return _.map(collection, function(value, key, collection){
+  filter<T, U extends Collection<T>>(collection: U, fn: Iteratee<U>): any[] {
+    return _.map(collection, function(value: U, key, collection){
       if (fn(value, key, collection)) {
         return value;
       }
     })
   }
   
-  reject(collection: any[] | Object, fn: Iteraee): any {
+  reject<T, U extends Collection<T>>(collection: U, fn: Iteratee<U>): any[] {
     return _.filter(collection, function (value, key, collection) {
       if (!fn(value, key, collection)) {
         return value;
@@ -75,26 +81,26 @@ class Underdash {
     });
   }
   
-  every(collection: any[], fn: Iteraee): any {
+  every<T>(collection: Collection<T>, fn: Iteratee<T>): boolean {
     return _.reduce(collection, function(acc, value, key, collection) {
       return acc && Boolean(fn(value, key, collection));
-    }, true)
+    }, true);
   }
   
-  some(collection: any[], fn: Iteraee): any {
+  some<T>(collection: Collection<T>, fn: Iteratee<T>): boolean {
     return _.reduce(collection, function(acc, value, key, collection) {
       return acc || Boolean(fn(value, key, collection));
-    }, true)
+    }, false);
   }
   
   // Clones one level
-  clone(input) {
+  clone<T>(input: Collection<T>): Collection<T> {
     if (_.isObject(input)) {
       let clone = {};
       _.each(input, function(value, key){
         clone[key] = value;
       });
-      return clone;
+      return <T>clone;
     }
     if (Array.isArray(input)) {
       let clone = [];
@@ -107,7 +113,7 @@ class Underdash {
   }
   
   // Recursively clones
-  cloneDeep(input) {
+  cloneDeep<T>(input: Collection<T>): Collection<T> {
     if (Array.isArray(input)) {
       let clone = [];
       _.each(input, (value, key) => {
@@ -120,12 +126,12 @@ class Underdash {
       _.each(input, (value, key) => {
         clone[key] = this.cloneDeep(value);
       });
-      return clone;
+      return <T>clone;
     }
     return input;
   }
   
-  isEqual(input1, input2) {
+  isEqual(input1: any, input2: any) {
     if (Array.isArray(input1) && Array.isArray(input2)) {
       return _.isArrayEqual(input1, input2);
     }
@@ -137,7 +143,7 @@ class Underdash {
     }
   }
   
-  private isArrayEqual(array1, array2){
+  private isArrayEqual<T, U>(array1: T[], array2: U[]){
     if (array1.length !== array2.length) { return false; }
     return _.every(array1, (value, index) => {
       return _.isEqual(value, array2[index]);
@@ -167,13 +173,13 @@ class Underdash {
     _.each(sources, function(source: Object){
       _.each(source, function(value, key) {
         destination[key] = value;
-      })
-    })
+      });
+    });
     return destination;
   }
   
   // Recursively does assign
-  merge(destination, ...sources: Object[]) {
+  merge(destination: Object, ...sources: Object[]) {
     let flattenObject = (object) => {
       let result = {};
       _.each(object, (unflattenedValue, key)=>{
@@ -182,14 +188,15 @@ class Underdash {
         } else {
           _.each(flattenObject(unflattenedValue), (value, key) => {
             return result[key] = value;
-          })
+          });
         }
-      })
+      });
       return result;
     }
     
-    let flattenedSources = _.map(sources, (source) => {
-      return flattenObject(source);
+    let flattenedSources = []
+    _.each(sources, function (source) {
+      flattenedSources.push(flattenObject(source));
     });
     
     _.assign(destination, ...flattenedSources);
@@ -246,7 +253,7 @@ class Underdash {
       return result;
     } 
     
-   
+   /** TODO: needs test */
    debounce(fn, duration) {
      return function (...args) {
        let context = this;
@@ -260,6 +267,7 @@ class Underdash {
      }
    }
    
+   /** TODO: needs test */
    throttle(fn, duration) {
      return function () {
        let isWaiting = false;
@@ -294,9 +302,7 @@ class Underdash {
    * returns true if null or undefined
    */
   isNil(input: any) {
-    /**
-     * Possible to redefine undefined in old browsers (pre-ES5)
-     */
+    // Possible to redefine undefined in old browsers (pre-ES5)
     return (input == null)
   }
   

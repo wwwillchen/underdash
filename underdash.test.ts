@@ -2,10 +2,11 @@ import {_} from './underdash';
 import chai = require('chai');
 var expect = chai.expect;
 
-console.log('_', _)
 describe('Underdash', function() {
 
-  it('exists', function() { expect(typeof _).to.equal('object'); });
+  it('exists', function() { 
+    expect(typeof _).to.equal('object'); 
+  });
 
   describe('each()', function() {
     it('works for arrays', function() {
@@ -19,14 +20,14 @@ describe('Underdash', function() {
       let double = (value, key) => result[key] = value * 2;
       _.each({a: 1, b: 2, c: 3}, double);
       expect(result).to.eql({a: 2, b: 4, c: 6})
-    })
+    });
   });
 
   describe('map()', function() {
     it("array", function(){
       const double = x => x * 2
       expect(_.map([1, 2, 3], double)).to.eql([2,4,6])
-    })
+    });
   });
 
   describe('reduce()', function() {
@@ -34,14 +35,14 @@ describe('Underdash', function() {
       const sum = (acc, value) => acc += value
       expect(_.reduce([1,2,3], sum)).to.eql(6)
     });
-  })
+  });
 
   describe('filter()', function() {
     it("array", function(){
       const odd = n => (n % 2 === 1)
       expect(_.filter([1,2,3], odd)).to.eql([1, 3])
     });
-  })
+  });
 
   describe('reject()', function() {
     it("array", function(){
@@ -53,17 +54,17 @@ describe('Underdash', function() {
   describe('every()', function() {
     it("array", function(){
       const odd = n => (n % 2 === 1)
-      expect(_.every([3,5,7], odd)).to.eql(true)
-      expect(_.every([3,5,7, 2], odd)).to.eql(false)
+      expect(_.every([3,5,7], odd)).to.equal(true)
+      expect(_.every([3,5,7, 2], odd)).to.equal(false)
     });
   });
 
   describe('some()', function() {
     it("returns true if at least one truthy value from iteraee", function(){
       const odd = n => (n % 2 === 1)
-      expect(_.some([3,5,7], odd)).to.eql(true)
-      expect(_.some([3,5,7, 2], odd)).to.eql(true)
-      expect(_.some([2, 4, 6], odd)).to.eql(false)
+      expect(_.some([3,5,7], odd)).to.equal(true)
+      expect(_.some([3,5,7, 2], odd)).to.equal(true)
+      expect(_.some([2, 4, 6], odd)).to.equal(false)
     });
   });
  
@@ -167,25 +168,25 @@ describe('Underdash', function() {
   });
   describe("isFunction()", function(){
     it("true for function", function() {
-      expect(_.isFunction(function(){})).to.eql(true)  
+      expect(_.isFunction(function(){})).to.equal(true)  
     });
     it("false for all other types", function() {
-      expect(_.isFunction(1)).to.eql(false)  
-      expect(_.isFunction({})).to.eql(false)  
-      expect(_.isFunction([])).to.eql(false)  
+      expect(_.isFunction(1)).to.equal(false)  
+      expect(_.isFunction({})).to.equal(false)  
+      expect(_.isFunction([])).to.equal(false)  
     });    
   });
 
   describe("isNil()", function(){
     it("true for null or undefined", function() {
-      expect(_.isNil(null)).to.eql(true)  
-      expect(_.isNil(undefined)).to.eql(true)  
+      expect(_.isNil(null)).to.equal(true)  
+      expect(_.isNil(undefined)).to.equal(true)  
     });
     it("false for all other types", function() {
-      expect(_.isNil(1)).to.eql(false)  
-      expect(_.isNil({})).to.eql(false)  
-      expect(_.isNil([])).to.eql(false)  
-      expect(_.isNil(false)).to.eql(false)  
+      expect(_.isNil(1)).to.equal(false)  
+      expect(_.isNil({})).to.equal(false)  
+      expect(_.isNil([])).to.equal(false)  
+      expect(_.isNil(false)).to.equal(false)  
     });    
   });
 
