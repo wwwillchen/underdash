@@ -1,0 +1,18 @@
+{
+  "name": "underdash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -w --require source-map-support/register **/*.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-clang-format": "^1.0.23",
+    "mocha": "^2.4.5",
+    "source-map-support": "^0.4.0"
+  }
+}
