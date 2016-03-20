@@ -1,8 +1,17 @@
 # Underdash
 
-The name is a play on Underscore and Lodash. I wanted to re-implement some of the functions I use frequently to: 1) understand the innerworkings of Lodash and 2) explore various aspects of Typescript (e.g. interfaces, unions, generics).
+The name is a play on Underscore and Lodash. 
+
+Why I made this:
+
+- Understand the innerworkings of Lodash
+- Explore various aspects of Typescript (e.g. interfaces, unions, generics).
 
 Goals:
-- Simple, easy to read implementation of core functions (e.g. _.map, _.each, _.reduce)
-- Unit tests
+- Simple implementations of core functions (e.g. _.map, _.each, _.reduce)
+- Covered by unit tests (97% code coverage)
+- Written in Typescript
 
+Non-goals:
+- Less performant than Lodash (prefer readability over perf.)
+- Less comprehensive
