@@ -1,6 +1,9 @@
-import {_} from './underdash';
+import {_} from '../underdash';
 import chai = require('chai');
-var expect = chai.expect;
+require('mocha-sinon');
+const sinon = require('sinon');
+
+const expect = chai.expect;
 
 describe('Underdash', function() {
 
@@ -155,6 +158,12 @@ describe('Underdash', function() {
     });
   });
   
+  describe('flatten()', function() {
+    it("flattens one level", function(){
+      expect(_.flatten([1,[2],[3,[4]]])).to.eql([1,2,3,[4]])
+    });
+  });
+  
   describe('flattenDeep()', function() {
     it("recursively flattens", function(){
       expect(_.flattenDeep([1,[2],[3,[4]]])).to.eql([1,2,3,4])
@@ -164,6 +173,68 @@ describe('Underdash', function() {
   describe("range()", function() {
     it("creates array", function(){
       expect(_.range(1, 11, 2)).to.eql([1, 3, 5, 7, 9])
+    });
+  });
+  
+  describe("debounce()", function() {
+    var clock;
+    var callback;
+    var debounced;
+    beforeEach(function () { 
+      clock = sinon.useFakeTimers();
+      callback = sinon.spy();
+      debounced = _.debounce(callback, 100); 
+    });
+    afterEach(function () { 
+      clock.restore(); 
+    });
+    it("delays invoking", function(){
+      debounced();
+      clock.tick(99);
+      expect(callback.notCalled).to.equal(true);
+      clock.tick(1);
+      expect(callback.calledOnce).to.equal(true);
+    });
+    
+    it("waits until last invocation has elapsed duration", function(){
+      debounced();
+      clock.tick(50);
+      expect(callback.notCalled).to.equal(true);
+      debounced();
+      clock.tick(50);
+      expect(callback.notCalled).to.equal(true);
+      clock.tick(49);
+      expect(callback.notCalled).to.equal(true);
+      clock.tick(1);
+      expect(callback.calledOnce).to.equal(true);
+    })
+  });
+  
+  describe("throttle()", function() {
+    var clock;
+    var callback;
+    var throttled;
+    beforeEach(function () { 
+      clock = sinon.useFakeTimers();
+      callback = sinon.spy();
+      throttled = _.throttle(callback, 100); 
+    });
+    afterEach(function () { 
+      clock.restore(); 
+    });
+    it("caps number of calls", function(){
+      throttled();
+      expect(callback.calledOnce).to.equal(true);
+      
+      throttled();
+      expect(callback.calledOnce).to.equal(true);
+      
+      clock.tick(50);
+      throttled();
+      
+      clock.tick(50);
+      throttled();
+      expect(callback.calledTwice).to.equal(true);
     });
   });
   describe("isFunction()", function(){

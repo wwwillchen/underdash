@@ -11,7 +11,6 @@ interface Reducer<T> {
 
 class Underdash {
   /******************************************
-   *
    * CORE COLLECTION METHODS
    ******************************************/
   
@@ -154,17 +153,12 @@ class Underdash {
     if (Object.keys(obj1).length !== Object.keys(obj2).length) {
       return false;
     }
-    let equalFlag = true;
-    _.each(obj1, (value, key) => {
-      if (!_.isEqual(value, obj2[key])){
-        equalFlag = false
-      };
+    return _.every(obj1, (value, key) => {
+      return _.isEqual(value, obj2[key]);
     });
-    return equalFlag;
   }
   
   /******************************************
-   *
    * OBJECT METHODS
    ******************************************/
   
@@ -204,7 +198,6 @@ class Underdash {
   }
   
   /******************************************
-   *
    * ARRAY METHODS
    ******************************************/
    
@@ -253,35 +246,32 @@ class Underdash {
       return result;
     } 
     
-   /** TODO: needs test */
-   debounce(fn, duration) {
-     return function (...args) {
-       let context = this;
-       let timeout;
-       if (timeout) {
-         clearTimeout(timeout);
-       }
-       timeout = setTimeout(function(){
-         fn.apply(context, args)
-       }, duration);
-     }
+   debounce(fn, duration: number) {
+      let timeout;
+      return function (...args) {
+        let context = this;
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        timeout = setTimeout(function(){
+          timeout = null;
+          fn.apply(context, args)
+        }, duration);
+      }
    }
    
-   /** TODO: needs test */
-   throttle(fn, duration) {
-     return function () {
-       let isWaiting = false;
-       return function (...args) {
+   throttle(fn, duration: number) {
+      let isWaiting = false;
+      return function (...args) {
         let context = this;
-        if (isWaiting) {
+        if (!isWaiting) {
+          isWaiting = true
           setTimeout(function(){
             isWaiting = false;
           }, duration)
-        } else {
           fn.apply(context, args); 
         }
       }
-     }
    }
    
   /******************************************

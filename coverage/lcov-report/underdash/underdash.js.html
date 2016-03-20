@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for underdash/underdash.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">underdash/</a> underdash.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.56% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>160/164</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>46/50</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>50/50</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.16% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>160/163</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">74×</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-yes">105×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">83×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">92×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var Underdash = (function () {
+    function Underdash() {
+    }
+    /******************************************
+     * CORE COLLECTION METHODS
+     ******************************************/
+    /**
+     * _.each
+     * iterate through a collection
+     */
+    Underdash.prototype.each = function (collection, fn) {
+        if (Array.isArray(collection)) {
+            return exports._.arrayForEach(collection, fn);
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (exports._.isObject(collection)) {
+            return exports._.objectForEach(collection, fn);
+        }
+    };
+    Underdash.prototype.arrayForEach = function (array, fn) {
+        for (var i = 0; i &lt; array.length; i++) {
+            fn(array[i], i, array);
+        }
+        return array;
+    };
+    Underdash.prototype.objectForEach = function (object, fn) {
+        for (var key in object) {
+            fn(object[key], key, object);
+        }
+        return object;
+    };
+    Underdash.prototype.map = function (collection, fn) {
+        var result = [];
+        exports._.each(collection, function (value, key, collection) {
+            if (!exports._.isNil(fn(value, key, collection))) {
+                result.push(fn(value, key, collection));
+            }
+        });
+        return result;
+    };
+    Underdash.prototype.reduce = function (collection, fn, acc) {
+        var initialAcc = Boolean(arguments.length &lt; 3);
+        exports._.each(collection, function (value, key, collection) {
+            if (initialAcc) {
+                initialAcc = false;
+                acc = value;
+            }
+            else {
+                acc = fn(acc, value, key, collection);
+            }
+        });
+        return acc;
+    };
+    Underdash.prototype.filter = function (collection, fn) {
+        return exports._.map(collection, function (value, key, collection) {
+            if (fn(value, key, collection)) {
+                return value;
+            }
+        });
+    };
+    Underdash.prototype.reject = function (collection, fn) {
+        return exports._.filter(collection, function (value, key, collection) {
+            if (!fn(value, key, collection)) {
+                return value;
+            }
+        });
+    };
+    Underdash.prototype.every = function (collection, fn) {
+        return exports._.reduce(collection, function (acc, value, key, collection) {
+            return acc &amp;&amp; Boolean(fn(value, key, collection));
+        }, true);
+    };
+    Underdash.prototype.some = function (collection, fn) {
+        return exports._.reduce(collection, function (acc, value, key, collection) {
+            return acc || Boolean(fn(value, key, collection));
+        }, false);
+    };
+    // Clones one level
+    Underdash.prototype.clone = function (input) {
+        if (exports._.isObject(input)) {
+            var clone_1 = {};
+            exports._.each(input, function (value, key) {
+                clone_1[key] = value;
+            });
+            return clone_1;
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (Array.isArray(input)) {
+            var clone_2 = [];
+            exports._.each(input, function (value, key) {
+                clone_2[key] = value;
+            });
+            return clone_2;
+        }
+<span class="cstat-no" title="statement not covered" >        return input;</span>
+    };
+    // Recursively clones
+    Underdash.prototype.cloneDeep = function (input) {
+        var _this = this;
+        if (Array.isArray(input)) {
+            var clone_3 = [];
+            exports._.each(input, function (value, key) {
+                clone_3[key] = _this.cloneDeep(value);
+            });
+            return clone_3;
+        }
+        if (exports._.isObject(input)) {
+            var clone_4 = {};
+            exports._.each(input, function (value, key) {
+                clone_4[key] = _this.cloneDeep(value);
+            });
+            return clone_4;
+        }
+        return input;
+    };
+    Underdash.prototype.isEqual = function (input1, input2) {
+        if (Array.isArray(input1) &amp;&amp; Array.isArray(input2)) {
+            return exports._.isArrayEqual(input1, input2);
+        }
+        if (exports._.isObject(input1) &amp;&amp; exports._.isObject(input2)) {
+            return exports._.isObjectEqual(input1, input2);
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof input1 === typeof input2) {
+            return (input1 === input2);
+        }
+    };
+    Underdash.prototype.isArrayEqual = function (array1, array2) {
+        if (array1.length !== array2.length) {
+            return false;
+        }
+        return exports._.every(array1, function (value, index) {
+            return exports._.isEqual(value, array2[index]);
+        });
+    };
+    Underdash.prototype.isObjectEqual = function (obj1, obj2) {
+        if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+            return false;
+        }
+        return exports._.every(obj1, function (value, key) {
+            return exports._.isEqual(value, obj2[key]);
+        });
+    };
+    /******************************************
+     * OBJECT METHODS
+     ******************************************/
+    // Only enumerable properties
+    Underdash.prototype.assign = function (destination) {
+        var sources = [];
+        for (var _i = 1; _i &lt; arguments.length; _i++) {
+            sources[_i - 1] = arguments[_i];
+        }
+        exports._.each(sources, function (source) {
+            exports._.each(source, function (value, key) {
+                destination[key] = value;
+            });
+        });
+        return destination;
+    };
+    // Recursively does assign
+    Underdash.prototype.merge = function (destination) {
+        var sources = [];
+        for (var _i = 1; _i &lt; arguments.length; _i++) {
+            sources[_i - 1] = arguments[_i];
+        }
+        var flattenObject = function (object) {
+            var result = {};
+            exports._.each(object, function (unflattenedValue, key) {
+                if (!exports._.isObject(unflattenedValue)) {
+                    return result[key] = unflattenedValue;
+                }
+                else {
+                    exports._.each(flattenObject(unflattenedValue), function (value, key) {
+                        return result[key] = value;
+                    });
+                }
+            });
+            return result;
+        };
+        var flattenedSources = [];
+        exports._.each(sources, function (source) {
+            flattenedSources.push(flattenObject(source));
+        });
+        exports._.assign.apply(exports._, [destination].concat(flattenedSources));
+        return destination;
+    };
+    /******************************************
+     * ARRAY METHODS
+     ******************************************/
+    /**
+     * Flattens one level deep
+     */
+    Underdash.prototype.flatten = function (array) {
+        var result = [];
+        exports._.each(array, function (value) {
+            if (Array.isArray(value)) {
+                result = result.concat(value);
+            }
+            else {
+                return result.push(value);
+            }
+        });
+        return result;
+    };
+    /**
+     * Recursively flattens until there's no more nested array
+     */
+    Underdash.prototype.flattenDeep = function (array) {
+        var result = [];
+        exports._.each(array, function (value) {
+            if (Array.isArray(value)) {
+                result = result.concat(exports._.flattenDeep(value));
+            }
+            else {
+                result.push(value);
+            }
+        });
+        return result;
+    };
+    /******************************************
+     *
+     * OTHER CORE METHODS
+     ******************************************/
+    Underdash.prototype.range = function (start, end, step) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (step === void 0) { <span class="cstat-no" title="statement not covered" >step = 1; </span>}
+        var result = [];
+        while (start &lt; end) {
+            result.push(start);
+            start += step;
+        }
+        return result;
+    };
+    Underdash.prototype.debounce = function (fn, duration) {
+        var timeout;
+        return function () {
+            var args = [];
+            for (var _i = 0; _i &lt; arguments.length; _i++) {
+<span class="cstat-no" title="statement not covered" >                args[_i - 0] = arguments[_i];</span>
+            }
+            var context = this;
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            timeout = setTimeout(function () {
+                timeout = null;
+                fn.apply(context, args);
+            }, duration);
+        };
+    };
+    Underdash.prototype.throttle = function (fn, duration) {
+        var isWaiting = false;
+        return function () {
+            var args = [];
+            for (var _i = 0; _i &lt; arguments.length; _i++) {
+<span class="cstat-no" title="statement not covered" >                args[_i - 0] = arguments[_i];</span>
+            }
+            var context = this;
+            if (!isWaiting) {
+                isWaiting = true;
+                setTimeout(function () {
+                    isWaiting = false;
+                }, duration);
+                fn.apply(context, args);
+            }
+        };
+    };
+    /******************************************
+     *
+     * HELPER METHODS
+     ******************************************/
+    /**
+     * _.isFunction
+     * only returns true if type is function
+     * lodash checks the toString() to avoid cross-browser issues
+     */
+    Underdash.prototype.isFunction = function (input) {
+        return (typeof input === "function");
+    };
+    /**
+     * _.isNil
+     * returns true if null or undefined
+     */
+    Underdash.prototype.isNil = function (input) {
+        // Possible to redefine undefined in old browsers (pre-ES5)
+        return (input == null);
+    };
+    Underdash.prototype.isObject = function (input) {
+        return (input.toString() === "[object Object]");
+    };
+    return Underdash;
+}());
+exports._ = new Underdash;
+//# sourceMappingURL=underdash.js.map</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Mar 19 2016 17:55:08 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

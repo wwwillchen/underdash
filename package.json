@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -w --require source-map-support/register **/*.test.js"
+    "test": "mocha -w --require source-map-support/register **/*.test.js",
+    "coverage": "istanbul cover _mocha"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,8 @@
     "gulp-clang-format": "^1.0.23",
     "gulp-tslint": "^4.3.3",
     "mocha": "^2.4.5",
+    "mocha-sinon": "^1.1.5",
+    "sinon": "^1.17.3",
     "source-map-support": "^0.4.0",
     "tslint": "^3.6.0",
     "typescript": "^1.8.9"
