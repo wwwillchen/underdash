@@ -35,7 +35,7 @@ class Underdash {
   }
   
   private objectForEach<T>(object: T, fn: Iteratee<T>): T {
-    for (let key in object) {
+    for (const key in object) {
       fn(object[key], key, object);
     }
     return object
@@ -44,8 +44,9 @@ class Underdash {
   map<T, U extends Collection<T>>(collection: U, fn: Iteratee<U>): any[] {
     const result = [];
     _.each(collection, function(value, key, collection){
-      if (!_.isNil(fn(value, key, collection))) {
-        result.push(fn(value, key, collection));  
+      const output = fn(value, key, collection);
+      if (!_.isNil(output)) {
+        result.push(output);  
       }
     })
     return result;
@@ -95,14 +96,14 @@ class Underdash {
   // Clones one level
   clone<T>(input: Collection<T>): Collection<T> {
     if (_.isObject(input)) {
-      let clone = {};
+      const clone = {};
       _.each(input, function(value, key){
         clone[key] = value;
       });
       return <T>clone;
     }
     if (Array.isArray(input)) {
-      let clone = [];
+      const clone = [];
       _.each(input, function(value, key){
         clone[key] = value;
       });
@@ -114,14 +115,14 @@ class Underdash {
   // Recursively clones
   cloneDeep<T>(input: Collection<T>): Collection<T> {
     if (Array.isArray(input)) {
-      let clone = [];
+      const clone = [];
       _.each(input, (value, key) => {
         clone[key] = this.cloneDeep(value);
       });
       return clone;
     } 
     if (_.isObject(input)) {
-      let clone = {};
+      const clone = {};
       _.each(input, (value, key) => {
         clone[key] = this.cloneDeep(value);
       });
@@ -143,7 +144,9 @@ class Underdash {
   }
   
   private isArrayEqual<T, U>(array1: T[], array2: U[]){
-    if (array1.length !== array2.length) { return false; }
+    if (array1.length !== array2.length) { 
+      return false; 
+    }
     return _.every(array1, (value, index) => {
       return _.isEqual(value, array2[index]);
     });
@@ -174,8 +177,8 @@ class Underdash {
   
   // Recursively does assign
   merge(destination: Object, ...sources: Object[]) {
-    let flattenObject = (object) => {
-      let result = {};
+    const flattenObject = (object) => {
+      const result = {};
       _.each(object, (unflattenedValue, key)=>{
         if (!_.isObject(unflattenedValue)) {
           return result[key] = unflattenedValue;
@@ -188,7 +191,7 @@ class Underdash {
       return result;
     }
     
-    let flattenedSources = []
+    const flattenedSources = []
     _.each(sources, function (source) {
       flattenedSources.push(flattenObject(source));
     });
@@ -238,7 +241,7 @@ class Underdash {
    ******************************************/
 
     range(start: number, end: number, step: number = 1) {
-      let result = [];
+      const result = [];
       while (start < end) {
         result.push(start);
         start += step;
@@ -249,7 +252,7 @@ class Underdash {
    debounce(fn, duration: number) {
       let timeout;
       return function (...args) {
-        let context = this;
+        const context = this;
         if (timeout) {
           clearTimeout(timeout);
         }
@@ -263,7 +266,7 @@ class Underdash {
    throttle(fn, duration: number) {
       let isWaiting = false;
       return function (...args) {
-        let context = this;
+        const context = this;
         if (!isWaiting) {
           isWaiting = true
           setTimeout(function(){
