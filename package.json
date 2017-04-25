@@ -13,12 +13,12 @@
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-clang-format": "^1.0.23",
-    "gulp-tslint": "^4.3.3",
-    "mocha": "^2.4.5",
-    "mocha-sinon": "^1.1.5",
-    "sinon": "^1.17.3",
+    "gulp-tslint": "^8.0.0",
+    "mocha": "^3.3.0",
+    "mocha-sinon": "^2.0.0",
+    "sinon": "^2.1.0",
     "source-map-support": "^0.4.0",
-    "tslint": "^3.6.0",
-    "typescript": "^1.8.9"
+    "tslint": "^5.1.0",
+    "typescript": "^2.2.2"
   }
 }
