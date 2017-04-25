@@ -1,5 +1,7 @@
 # Underdash
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wwwillchen/underdash.svg)](https://greenkeeper.io/)
+
 The name is a play on Underscore and Lodash. 
 
 Why I made this:
